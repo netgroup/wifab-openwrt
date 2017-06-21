@@ -193,22 +193,6 @@
  };
  
  static void print_wifi_wpa(const uint8_t type, uint8_t len, const uint8_t *data)
-@@ -1835,6 +1838,7 @@ void print_ies(unsigned char *ie, int ie
- 		    ieprinters[ie[0]].name &&
- 		    ieprinters[ie[0]].flags & BIT(ptype)) {
- 			print_ie(&ieprinters[ie[0]], ie[0], ie[1], ie + 2);
-+#if 0
- 		} else if (ie[0] == 221 /* vendor */) {
- 			print_vendor(ie[1], ie + 2, unknown, ptype);
- 		} else if (unknown) {
-@@ -1844,6 +1848,7 @@ void print_ies(unsigned char *ie, int ie
- 			for (i=0; i<ie[1]; i++)
- 				printf(" %.2x", ie[2+i]);
- 			printf("\n");
-+#endif
- 		}
- 		ielen -= ie[1] + 2;
- 		ie += ie[1] + 2;
 @@ -1884,6 +1889,7 @@ static void print_capa_non_dmg(__u16 cap
  		printf(" ESS");
  	if (capa & WLAN_CAPABILITY_IBSS)

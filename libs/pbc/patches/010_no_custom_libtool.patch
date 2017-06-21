@@ -1,0 +1,13 @@
+diff --git a/configure b/configure
+index 91de4db..cd02e04 100755
+--- a/configure
++++ b/configure
+@@ -7466,7 +7466,7 @@ fi
+ LIBTOOL_DEPS="$ltmain"
+ 
+ # Always use our own libtool.
+-LIBTOOL='$(SHELL) $(top_builddir)/libtool'
++LIBTOOL='libtool'
+ 
+ 
+ 

@@ -1,0 +1,13 @@
+diff --git a/simple.make b/simple.make
+index 988c231..37976ef 100644
+--- a/simple.make
++++ b/simple.make
+@@ -25,8 +25,6 @@ ifeq ($(PLATFORM),win32)
+   LDFLAGS := -L/home/blynn/cross/gmp/lib
+   pbc_getline_objs := pbc/pbc_getline.o
+ else
+-  # tcmalloc is faster than normal malloc.
+-  LDLIBS := $(LDLIBS) -ltcmalloc
+   pbc_getline_objs := pbc/pbc_getline.readline.o
+   pbc_pbc_libs := -lreadline
+ endif

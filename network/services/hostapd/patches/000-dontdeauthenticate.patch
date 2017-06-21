@@ -1,0 +1,19 @@
+commit ffb73c13311b218efc5c4c8906967c23f9d4e8de
+Author: Claudio Pisa <claudio.pisa@uniroma2.it>
+Date:   Wed Apr 27 17:51:07 2016 +0200
+
+    don't deauthenticate when receiving a SIGHUP
+
+diff --git a/src/ap/hostapd.c b/src/ap/hostapd.c
+index c09c17a44..a18f27b83 100644
+--- a/src/ap/hostapd.c
++++ b/src/ap/hostapd.c
+@@ -130,6 +130,8 @@ static void hostapd_reload_bss(struct hostapd_data *hapd)
+ 
+ static void hostapd_clear_old(struct hostapd_iface *iface)
+ {
++    /* CLA */
++    return;
+ 	size_t j;
+ 
+ 	/*

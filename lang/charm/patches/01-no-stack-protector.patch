@@ -1,0 +1,27 @@
+diff --git a/configure.sh b/configure.sh
+index 906492a..43a5503 100755
+--- a/configure.sh
++++ b/configure.sh
+@@ -238,10 +238,12 @@ case "$cpu" in
+   ;;
+   *)
+     echo "Unsupported CPU = $cpu"
+-    exit 1
++    #exit 1
+   ;;
+ esac
+ 
++#cpu=arm
++
+ # OS specific
+ if check_define __linux__ ; then
+   targetos="Linux"
+@@ -534,7 +536,7 @@ fi
+ gcc_flags="-Wold-style-declaration -Wold-style-definition -Wtype-limits"
+ gcc_flags="-Wformat-security -Wformat-y2k -Winit-self -Wignored-qualifiers $gcc_flags"
+ gcc_flags="-Wmissing-include-dirs -Wempty-body -Wnested-externs $gcc_flags"
+-gcc_flags="-fstack-protector-all -Wendif-labels $gcc_flags"
++gcc_flags="-Wendif-labels $gcc_flags"
+ cat > $TMPC << EOF
+ int main(void) { return 0; }
+ EOF

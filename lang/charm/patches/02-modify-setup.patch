@@ -1,0 +1,34 @@
+diff --git a/setup.py b/setup.py
+index fcb1ed6..b6b12cb 100644
+--- a/setup.py
++++ b/setup.py
+@@ -32,18 +32,7 @@ class UninstallCommand(Command):
+         self.cwd = os.getcwd()
+     def run(self):
+         install_system=platform.system();
+-        path_to_charm2 = None;
+-        if install_system == 'Darwin':
+-            path_to_charm = get_python_lib();
+-        elif install_system == 'Windows':
+-            path_to_charm = get_python_lib();
+-        elif install_system == 'Linux':
+-            dist = platform.linux_distribution()[0];
+-            if dist == 'Ubuntu' or dist == 'debian' or dist == 'LinuxMint':
+-                path_to_charm = get_python_lib(1, 1, '/usr/local') + '/dist-packages';
+-                path_to_charm2 = get_python_lib(1, 1, '/usr/local') + '/site-packages';
+-            elif dist == 'Fedora':
+-                path_to_charm = get_python_lib(1, 1, '/usr') + '/site-packages';
++        path_to_charm2 = '/usr/site-packages';
+         #print('python path =>', path_to_charm, _charm_version);
+         shutil.rmtree(path_to_charm+'/__pycache__', True)
+         shutil.rmtree(path_to_charm+'/compiler', True)
+@@ -277,9 +266,6 @@ setup(name = 'Charm-Crypto',
+ 	author = "J. Ayo Akinyele",
+ 	author_email = "ayo.akinyele@charm-crypto.com",
+ 	url = "http://charm-crypto.com/",
+-    install_requires = ['setuptools',
+-                        'pyparsing >= 1.5.5, <=1.5.7'],
+-    tests_require=['pytest'],
+ 	packages = ['charm',
+                     'charm.core',
+                         'charm.core.crypto',

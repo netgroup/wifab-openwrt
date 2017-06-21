@@ -1,0 +1,46 @@
+diff --git a/simple.make b/simple.make
+index 37976ef..e669ad6 100644
+--- a/simple.make
++++ b/simple.make
+@@ -3,7 +3,7 @@
+ 
+ .PHONY: target binaries test clean depend
+ 
+-target: out libpbc.a binaries
++target: out libpbc.a binaries libpbc.so
+ 
+ CC := gcc
+ RANLIB := ranlib
+@@ -11,9 +11,9 @@ warnflags := -Wall -W -Wfloat-equal -Wendif-labels -Wshadow \
+ 	     -Wpointer-arith -Wcast-align -Wstrict-prototypes \
+              -Wredundant-decls #-std=c99 -pedantic
+ CPPFLAGS := -Iinclude -I.
+-optflags := -O3 -pipe -ffast-math -fomit-frame-pointer
++optflags := -O3 -pipe -ffast-math -fPIC
+ LDLIBS := -lgmp -lm
+-CFLAGS := $(optflags) $(warnflags)
++CFLAGS := $(optflags) $(warnflags) 
+ 
+ ifeq ($(PLATFORM),win32)
+   nonlinux := .win32
+@@ -72,6 +72,9 @@ pbc/lex.yy.c : pbc/parser.lex
+ 
+ pbc_objs := pbc/pbc.o $(pbc_getline_objs) pbc/parser.tab.o pbc/lex.yy.o libpbc.a
+ 
++pbc_objs0 := arith/field.o arith/fp.o arith/montfp.o arith/naivefp.o arith/fastfp.o arith/fasterfp.o arith/multiz.o arith/z.o arith/fieldquadratic.o arith/poly.o arith/ternary_extension_field.o arith/random.o arith/dlog.o ecc/curve.o ecc/singular.o ecc/pairing.o ecc/param.o ecc/a_param.o ecc/d_param.o ecc/e_param.o ecc/f_param.o ecc/g_param.o ecc/eta_T_3.o ecc/hilbert.o ecc/mnt.o ecc/mpc.o misc/utils.o misc/darray.o misc/symtab.o misc/extend_printf.o misc/memory.o arith/init_random.o
++
++
+ pbc_bin := out/pbc$(exe_suffix)
+ 
+ $(pbc_bin) : $(pbc_objs) libpbc.a
+@@ -125,6 +128,10 @@ endif
+ depend:
+ 	makedepend -fsimple.make -Iinclude -Y -- $(CFLAGS) -- $(srcs) 2> /dev/null
+ 
++libpbc.so: libpbc.a
++	$(CC) -shared -o libpbc.so $(pbc_objs0) $(LDFLAGS) $(LDLIBS)
++	#$(CC) -shared -o libpbc.so $(pbc_objs0) -Wl,--whole-archive $(LDFLAGS) $(LDLIBS)
++
+ # DO NOT DELETE
+ 
+ arith/field.o: include/pbc_utils.h include/pbc_field.h include/pbc_multiz.h
