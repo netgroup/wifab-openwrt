@@ -1,4 +1,9 @@
-
+#
+# Copyright (C) 2017 Claudio Pisa <claudio.pisa@uniroma2.it>
+#
+# This is free software, licensed under the GNU General Public License v2.
+# See /LICENSE for more information.
+# 
 
 include $(TOPDIR)/rules.mk
 
@@ -7,14 +12,10 @@ PKG_VERSION:=0.5.14
 PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-#PKG_SOURCE_URL:=https://crypto.stanford.edu/pbc/files/pbc-0.5.14.tar.gz
-PKG_SOURCE_URL:=http://127.0.0.1:8000/pbc-0.5.14.tar.gz
+PKG_SOURCE_URL:=https://crypto.stanford.edu/pbc/files/pbc-0.5.14.tar.gz
 PKG_MD5SUM:=842b85c50ba1464b207fc7b7a1f6ac18
 PKG_MAINTAINER := Claudio Pisa <claudio.pisa@uniroma2.it>
 PKG_BUILD_DEPENDS:=+libgmp +libreadline +libncurses
-#PKG_FIXUP:=autoreconf
-#PKG_FIXUP:=patch-libtool
-#PKG_FIXUP:=gettext-version
 
 include $(INCLUDE_DIR)/host-build.mk
 include $(INCLUDE_DIR)/package.mk
@@ -26,14 +27,8 @@ define Package/pbc
   TITLE:=pbc library.
 endef
 
-#define Build/Prepare
-#	$(Build/Prepare/Default)
-#	cd $(PKG_BUILD_DIR) && autoconf
-#endef
-
 CLFAGS += -fPIC
 
-#CONFIGURE_ARGS += " --with-gmp=$(STAGING_DIR)/usr/lib/ "
 CONFIGURE_VARS += LDFLAGS=" -L$(STAGING_DIR)/usr/lib/ "
 OURLDLIBS=" -lgmp -lm -lncurses "
 

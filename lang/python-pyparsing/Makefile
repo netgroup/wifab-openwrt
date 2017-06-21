@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2014 OpenWrt.org
+# Copyright (C) 2017 Claudio Pisa <claudio.pisa@uniroma2.it>
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -12,8 +12,7 @@ PKG_VERSION:=2.2.0
 PKG_RELEASE:=1
 
 PKG_SOURCE:=pyparsing-2.2.0.tar.gz
-#PKG_SOURCE_URL:=https://freefr.dl.sourceforge.net/project/pyparsing/pyparsing/pyparsing-2.2.0/
-PKG_SOURCE_URL:=http://127.0.0.1:8000/
+PKG_SOURCE_URL:=https://freefr.dl.sourceforge.net/project/pyparsing/pyparsing/pyparsing-2.2.0/
 PKG_MD5SUM:=0214e42d63af850256962b6744c948d9
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/pyparsing-$(PKG_VERSION)
